@@ -5,13 +5,6 @@
   	(:gen-class)
   	)
 
-
-
-(defn textline-parsed [dir num-fields]
-  (let [outargs (v/gen-nullable-vars num-fields)
-        source (hfs-textline dir)]
-    (<- outargs (source ?line) (c/re-parse [#"[^\s]+,"] ?line :>> outargs) (:distinct false))))
-
 (defn count-ratings [output-tap in-dir]
     (?<- output-tap 
     	[?count] 
